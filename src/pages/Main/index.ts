@@ -1,0 +1,1 @@
+export {MainAsyncPage as Main} from './ui/Main.async'

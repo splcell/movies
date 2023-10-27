@@ -1,0 +1,33 @@
+.btn {
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.primary {
+  background: var(--primary-color);
+  color: var(--secondary-text-color);
+  transition: 0.3s all;
+
+  &:hover {
+    background: var(--secondary-color);
+    color: var(--primary-text-color);
+  }
+}
+
+.secondary {
+  background: var(--secondary-color);
+  color: var(--primary-text-color);
+}
+
+.transparent {
+  background: transparent;
+  color: var(--primary-text-color);
+}
+
+.small {
+  padding: 3px;
+}
+
+.middle {
+  padding: 7px;
+}

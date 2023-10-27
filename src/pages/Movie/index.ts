@@ -1,0 +1,1 @@
+export {MovieAsyncPage as MoviePage} from './ui/MoviePage.async'
