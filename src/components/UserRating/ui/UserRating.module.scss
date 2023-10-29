@@ -1,0 +1,13 @@
+.star{
+  width: 30px;
+  margin-right: 5px;
+  fill: var(--secondary-color)
+}
+
+.filled{
+  fill: var(--primary-color);
+}
+
+.editable{
+  cursor: pointer;
+}

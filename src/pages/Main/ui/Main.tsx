@@ -8,13 +8,13 @@ export default function Main() {
   
 
   return (
-    <>
+    <div className="content-wrapper">
       <Filters>
         <Search />
         <SelectComponent />
       </Filters>
       <MoviesList />
       {/* <Pagination /> */}
-    </>
+    </div>
   );
 }

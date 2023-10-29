@@ -24,6 +24,11 @@
   color: var(--primary-text-color);
 }
 
+.disabled{
+  opacity: .5;
+  cursor: auto;
+}
+
 .small {
   padding: 3px;
 }
