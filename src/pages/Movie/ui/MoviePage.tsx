@@ -14,11 +14,8 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Button } from "../../../components/Button";
 import cn from 'classnames'
 import { UserRating } from "../../../components/UserRating";
-import { ReviewsListActions, selectAllReviews, selectReviewById, selectReviewIds, selectReviewsByMovie } from "../../../components/Reviews/model/slice/reviewSlice";
-import { nanoid } from "@reduxjs/toolkit";
-import { StoreSchema } from "../../../providers/StoreProvider/config/storeSchema";
+import {selectAllReviews} from "../../../components/Reviews/model/slice/reviewSlice";
 import { Review } from "../../../components/Reviews";
-import { Error } from "../../../components/Error";
 import { ReviewForm } from "../../../components/Reviews/ui/ReviewForm/ReviewForm";
 
 interface UserRating{

@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { SearchActions } from "../model/slice/searchSlice";
 import { Button } from "../../Button";
 import { MoviesListActions } from "../../MoviesList/model/slice/moviesSlice";
-import { SelectActions } from "../../Select/model/slice/selectSlice";
 import { PaginationActions } from "../../Pagination/model/slice/paginationSlice";
 
 export const Search = memo(() => {

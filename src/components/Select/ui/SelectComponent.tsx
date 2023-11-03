@@ -2,7 +2,6 @@ import { useDispatch } from 'react-redux';
 import Select from 'react-select';
 import { SelectActions } from '../model/slice/selectSlice';
 import { useCallback } from 'react';
-import { MovieInfoActions } from '../../MovieInfo/model/slice/movieInfoSlice';
 import { MoviesListActions } from '../../MoviesList/model/slice/moviesSlice';
 import { PaginationActions } from '../../Pagination/model/slice/paginationSlice';
 

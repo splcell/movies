@@ -1,3 +1,4 @@
+//@ts-ignore
 import { memo, useCallback, useState, KeyDownEvent, useEffect } from "react";
 import { UserRatingProps } from "./UserRating.props";
 import { GiRoundStar } from "react-icons/gi";
@@ -40,6 +41,7 @@ export const UserRating = memo(({isEditable = false, rating, setRating, id, ...p
   }
 
   const constructRating = useCallback((currentRating: number) => {
+    //@ts-ignore
     const updateArray = ratingArray.map((r: JSX.Element, i: number) => (
       <GiRoundStar className={cn(styles.star, {
         [styles.filled]: i < currentRating,

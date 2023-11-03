@@ -1,4 +1,4 @@
-import { EntityState, createEntityAdapter, createSelector, createSlice } from "@reduxjs/toolkit";
+import { EntityState, createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { Review } from "../types/review";
 import { StoreSchema } from "../../../../providers/StoreProvider/config/storeSchema";
 
@@ -26,7 +26,7 @@ export const {
   selectIds: selectReviewIds
 } = reviewsAdapter.getSelectors((state: StoreSchema) => state.reviews)
 
-export const selectReviewsByMovie = createSelector(
-  [selectAllReviews, (state, movieId) => movieId],
-  (reviews, movieId) => reviews.filter(review => review.movieId === movieId)
-)
+// export const selectReviewsByMovie = createSelector(
+//   [selectAllReviews, (state, movieId) => movieId],
+//   (reviews, movieId) => reviews.filter(review => review.movieId === movieId)
+// )
