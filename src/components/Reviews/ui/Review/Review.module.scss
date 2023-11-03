@@ -1,0 +1,10 @@
+.reviewWrapper {
+  max-width: 500px;
+  min-height: 100px;
+  background: var(--secondary-text-color);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  border-top: 3px solid var(--primary-color);
+  word-wrap: break-word;
+}

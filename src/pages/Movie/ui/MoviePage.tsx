@@ -4,7 +4,7 @@ import { getMovieInfo } from "../../../components/MovieInfo/model/slice/movieInf
 import { getStatus } from "../../../components/MovieInfo/model/selectors/getStatus";
 import { getMovieInfoError } from "../../../components/MovieInfo/model/selectors/getError";
 import styles from "./MoviePage.module.scss";
-import { useEffect, useState} from "react";
+import { useEffect, useMemo, useState} from "react";
 import { useAppDispatch } from "../../../hooks/hooks";
 import { memoizedMovieInfo } from "../../../components/MovieInfo/model/selectors/getMovieInfo";
 import { MovieInfo } from "../../../components/MovieInfo/model/types/movieInfo";
@@ -14,6 +14,12 @@ import { BsArrowLeft } from "react-icons/bs";
 import { Button } from "../../../components/Button";
 import cn from 'classnames'
 import { UserRating } from "../../../components/UserRating";
+import { ReviewsListActions, selectAllReviews, selectReviewById, selectReviewIds, selectReviewsByMovie } from "../../../components/Reviews/model/slice/reviewSlice";
+import { nanoid } from "@reduxjs/toolkit";
+import { StoreSchema } from "../../../providers/StoreProvider/config/storeSchema";
+import { Review } from "../../../components/Reviews";
+import { Error } from "../../../components/Error";
+import { ReviewForm } from "../../../components/Reviews/ui/ReviewForm/ReviewForm";
 
 interface UserRating{
   id: string;
@@ -29,6 +35,7 @@ export default function MoviePage() {
   const movieKeys: string[] = [];
   const navigate = useNavigate();
   const [rating, setRating] = useState(0)
+  const reviews = useSelector(selectAllReviews)
 
   Object.keys(movieInfo!).map((key) => {
     if (
@@ -63,7 +70,10 @@ export default function MoviePage() {
     }
   }, [id, dispatch]);
 
-  
+  const movieReviews = useMemo(() => {
+    return reviews.filter(review => review.movieId === id)
+
+  }, [reviews, id])
 
 
   if (status == "loading") {
@@ -76,7 +86,7 @@ export default function MoviePage() {
 
   movieKeys.pop();
 
-  console.log(rating)
+  console.log(movieReviews)
 
   return (
     <div className={styles.movieInner}>
@@ -150,7 +160,21 @@ export default function MoviePage() {
           <UserRating rating={rating} setRating={setRating} isEditable id={id!}/>
         </div>
       </div>
-      
+      <div className={styles.movieReviewsWrapper}>
+      <Text role="title" content="Reviews" isBold className={styles.movieReviews}/>
+        {movieReviews.length > 0 
+        ? 
+          movieReviews.map(review => (
+            <Review key={review.id} content={review.body}/>
+          ))
+        :
+          
+            <Text role="title" content="Reviews not Found"/>
+          
+        }
+        <ReviewForm movieId={id ? id : ''}/>
+      </div>
+        
     </div>
   );
 }

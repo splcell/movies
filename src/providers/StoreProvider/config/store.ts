@@ -4,6 +4,7 @@ import { SelectReducer } from "../../../components/Select/model/slice/selectSlic
 import { MovieListReducer } from "../../../components/MoviesList/model/slice/moviesSlice";
 import { PaginationReducer } from "../../../components/Pagination/model/slice/paginationSlice";
 import { MovieInfoReducer } from "../../../components/MovieInfo/model/slice/movieInfoSlice";
+import { ReviewsistReducer } from "../../../components/Reviews/model/slice/reviewSlice";
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     select: SelectReducer,
     moviesList: MovieListReducer,
     pagination: PaginationReducer,
-    movieInfo: MovieInfoReducer
+    movieInfo: MovieInfoReducer,
+    reviews: ReviewsistReducer
   }
 })
 
