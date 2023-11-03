@@ -120,6 +120,7 @@ export default function MoviePage() {
               {movieKeys.map((key, index) => (
                 <tr key={index}>
                   <td>{key}</td>
+                  {/* @ts-ignore */}
                   <td>{movieInfo[key]}</td>
                 </tr>
               ))}
