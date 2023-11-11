@@ -1,6 +1,5 @@
 import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Movie } from "../types/movieListSchema";
-import { animateScroll } from 'react-scroll';
 
 export interface MoviesListSliceSchema {
   movies: Movie[];
