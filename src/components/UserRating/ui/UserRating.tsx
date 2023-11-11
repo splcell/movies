@@ -2,7 +2,7 @@
 import { memo, useCallback, useState, KeyDownEvent, useEffect } from "react";
 import { UserRatingProps } from "./UserRating.props";
 import { GiRoundStar } from "react-icons/gi";
-import styles from './Userrating.module.scss';
+import styles from './UserRating.module.scss';
 import cn from 'classnames'
 
 export const UserRating = memo(({isEditable = false, rating, setRating, id, ...props}: UserRatingProps) => {

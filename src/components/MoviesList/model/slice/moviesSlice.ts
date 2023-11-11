@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { Movie } from "../types/movieListSchema";
+import { animateScroll } from 'react-scroll';
 
 export interface MoviesListSliceSchema {
   movies: Movie[];
@@ -19,7 +20,7 @@ export const getAllMovies = createAsyncThunk<MoviesListSliceSchema, Options>(
   "moviesList/getAllMovies",
   async function({page=1, query, type}, thunkApi){
     try {
-      const response = await fetch(`http://www.omdbapi.com/?apikey=20d32d33&s=${query}&type=${type}&page=${page}&plot=full`)
+      const response = await fetch(`https://www.omdbapi.com/?apikey=20d32d33&s=${query}&type=${type}&page=${page}&plot=full`)
 
       if (!response.ok) {
         throw new Error();
@@ -57,12 +58,13 @@ const moviesListSlice = createSlice({
   initialState,
   reducers: {
     changeMovies: (state, action) => {
-      const newMovies = action.payload.filter((movie: Movie) => {
-        return !state.movies.find((m) => m.imdbID === movie.imdbID);
-      });
+      // const newMovies = action.payload.filter((movie: Movie) => {
+      //   return !state.movies.find((m) => m.imdbID === movie.imdbID);
+      // });
 
-      state.movies.push(...newMovies);
-      // state.movies = action.payload
+      // state.movies.push(...newMovies);
+      // // state.movies = action.payload
+      state.movies = action.payload
     },
 
     getTotalResults: (state, action) => {

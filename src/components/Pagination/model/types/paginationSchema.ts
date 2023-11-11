@@ -1,3 +1,5 @@
 export interface PaginationSchema{
-  page: number
+  page: number;
+  next: number;
+  prev: number;
 }

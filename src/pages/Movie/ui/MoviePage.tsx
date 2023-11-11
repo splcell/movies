@@ -52,12 +52,14 @@ export default function MoviePage() {
   useEffect(() => {
     const ratings = localStorage.getItem('ratings') as string
     const userRating = JSON.parse(ratings)
-
-    Object.entries(userRating).find(([key, value]) => {
-      if(key === id){
-        setRating(Number(value))
-      }
-    })
+    if(userRating){
+      Object.entries(userRating).find(([key, value]) => {
+        if(key === id){
+          setRating(Number(value))
+        }
+      })
+    }
+    
     
   }, [id])
 
@@ -82,8 +84,6 @@ export default function MoviePage() {
   }
 
   movieKeys.pop();
-
-  console.log(movieReviews)
 
   return (
     <div className={styles.movieInner}>

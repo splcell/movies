@@ -1,0 +1,25 @@
+.paginationInner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 20px;
+  margin-top: 30px;
+}
+
+.paginationBox{
+  display: flex;
+  justify-content: center;
+  column-gap: 10px;
+}
+
+.paginationBtn{
+  width: 27px;
+  height: 27px;
+}
+
+.active{
+  background: var(--primary-color);
+  border-radius: 50%;
+  font-weight: 700;
+  color: var(--secondary-text-color);
+}
