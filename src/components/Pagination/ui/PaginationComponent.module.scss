@@ -23,3 +23,15 @@
   font-weight: 700;
   color: var(--secondary-text-color);
 }
+
+@media(max-width: 510px){
+  .paginationBox{
+    column-gap: 4px;
+  }
+}
+
+@media(max-width: 350px){
+  .paginationInner{
+    column-gap: 14px;
+  }
+}

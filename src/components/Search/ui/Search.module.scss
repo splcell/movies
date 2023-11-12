@@ -6,3 +6,15 @@
   padding: 7px 10px;
   margin-right: 5px;
 }
+
+@media(max-width: 620px){
+  .input{
+    width: 200px;
+  }
+}
+
+@media(max-width: 350px){
+  .input{
+    width: 190px;
+  }
+}

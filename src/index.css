@@ -41,3 +41,21 @@ main{
   flex-direction: column;
   align-items: center;
 }
+
+@media(max-width: 930px){
+  .css-b62m3t-container, .css-b62m3t-container .css-13movbk-control, .css-b62m3t-container .css-1qs1wmb-control{
+    width: 470px;
+  }
+}
+
+@media(max-width: 620px){
+  .css-b62m3t-container, .css-b62m3t-container .css-13movbk-control, .css-b62m3t-container .css-1qs1wmb-control{
+    width: 275px;
+  }
+}
+
+@media(max-width: 350px){
+  .css-b62m3t-container, .css-b62m3t-container .css-13movbk-control, .css-b62m3t-container .css-1qs1wmb-control{
+    width: 259px;
+  }
+}
