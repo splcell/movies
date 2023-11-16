@@ -25,7 +25,7 @@ export const ReviewForm = memo(({movieId}: ReviewPropsForm) => {
 
     <div className={styles.reviewFormWrapper}>
       <textarea value={text} onChange={onChangeText} className={styles.textarea}/>
-      <Button color="secondary" size="m" onClick={addNewReview} disabled={text.trim() === ''}>Add Review</Button>
+      <Button color="secondary" size="m" onClick={addNewReview} disabled={text.trim() === ''} className={styles.reviewBtn}>Add Review</Button>
     </div>
   )
 })

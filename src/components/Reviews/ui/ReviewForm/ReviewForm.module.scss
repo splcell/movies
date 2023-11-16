@@ -6,11 +6,16 @@
 }
 
 .textarea{
-  width: 500px;
+  width: 900px;
   height: 170px;
   resize: none;
   border-radius: 5px;
   background: var(--secondary-text-color);
   outline: none;
   padding: 5px 10px;
+}
+
+.reviewBtn{
+  width: 500px;
+  margin: 0 auto;
 }

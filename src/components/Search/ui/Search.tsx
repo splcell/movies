@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import styles from './Search.module.scss'
 import { useDispatch } from "react-redux";
 import { SearchActions } from "../model/slice/searchSlice";
@@ -15,15 +15,21 @@ export const Search = memo(() => {
       setValue(e.target.value)
     };
 
-    const onClickHandler = () => {
-      dispatch(MoviesListActions.cleanMovies())
+    const onClickHandler = useCallback(() => {
+      // dispatch(MoviesListActions.cleanMovies())
       dispatch(PaginationActions.removePage())
       dispatch(SearchActions.changeValue(value.toLowerCase()))
       setValue('')
-    }
+    }, [dispatch, value])
+
+    const onKeyHandler = useCallback((e: React.KeyboardEvent<HTMLDivElement>) => {
+      if(e.code === 'Enter'){
+        onClickHandler()
+      }
+    }, [onClickHandler])
 
     return (
-      <div className={styles.searchWrapper}>
+      <div className={styles.searchWrapper} onKeyDown={onKeyHandler}>
         <input
           type="text"
           value={value}

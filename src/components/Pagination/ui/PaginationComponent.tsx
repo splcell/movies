@@ -141,7 +141,7 @@ export const PaginationComponent = memo(() => {
     return null
   }
 
-  
+  console.log(prev, next)
 
   return (
     <div className={styles.paginationInner}>

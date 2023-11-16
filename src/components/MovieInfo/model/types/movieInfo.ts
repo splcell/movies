@@ -24,4 +24,6 @@ export interface MovieInfo{
   BoxOffice: string,
   Production: string,
   Website: string,
+  imdbRating: string,
+  imdbVotes: string
 }

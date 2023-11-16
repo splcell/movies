@@ -4,9 +4,22 @@
   align-items: center;
 }
 
+.headerRating{
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.headerVotes{
+  font-size: 14px;
+  font-weight: 700;
+  border-bottom: 1px solid var(--primary-color);
+}
+
 .movieHeader {
   display: flex;
   align-items: center;
+  column-gap: 50px;
   margin-bottom: 8px;
 }
 
@@ -14,9 +27,23 @@
   display: flex;
   height: 615px;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   column-gap: 30px;
   margin-top: 30px;
+}
+
+.movieInfoList{
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.movieInfoItem{
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--primary-color);
+  font-weight: 700;
 }
 
 .movieTitle {
@@ -27,20 +54,30 @@
   margin-bottom: 0;
 }
 
-.movieDescription, .movieRatings, .userRating {
+.movieDescriptionTitle{
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.movieDescription{
+  max-width: 1200px;
+  padding: 10px 15px;
+  margin-top: 20px;
+  font-size: 17px;
+}
+
+.movieRatings, .userRating {
   max-width: 1400px;
-  background: var(--secondary-text-color);
-  border-top: 3px solid var(--primary-color);
   padding: 10px 15px;
   border-radius: 5px;
   margin-top: 20px;
 }
 
+
 .movieRatings{
   width: 50%;
   justify-content: center;
   margin-top: 10px;
-  margin-right: auto;
 }
 
 .moviePoster {
@@ -51,6 +88,8 @@
 .ratingsBox{
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   align-items: center
 }
@@ -114,3 +153,19 @@ table {
   color: var(--secondary-text-color);
 }
 
+.rate{
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.bad{
+  color: #FF3244;
+}
+
+.mid{
+  color: #777777;
+}
+
+.good{
+  color: #3BB33B;
+}

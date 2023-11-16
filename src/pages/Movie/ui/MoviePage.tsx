@@ -4,12 +4,11 @@ import { getMovieInfo } from "../../../components/MovieInfo/model/slice/movieInf
 import { getStatus } from "../../../components/MovieInfo/model/selectors/getStatus";
 import { getMovieInfoError } from "../../../components/MovieInfo/model/selectors/getError";
 import styles from "./MoviePage.module.scss";
-import { useEffect, useMemo, useState} from "react";
+import { useCallback, useEffect, useMemo, useState} from "react";
 import { useAppDispatch } from "../../../hooks/hooks";
 import { memoizedMovieInfo } from "../../../components/MovieInfo/model/selectors/getMovieInfo";
 import { MovieInfo } from "../../../components/MovieInfo/model/types/movieInfo";
 import { Text } from "../../../components/Text/Text";
-import Table from "react-bootstrap/Table";
 import { BsArrowLeft } from "react-icons/bs";
 import { Button } from "../../../components/Button";
 import cn from 'classnames'
@@ -17,6 +16,7 @@ import { UserRating } from "../../../components/UserRating";
 import {selectAllReviews} from "../../../components/Reviews/model/slice/reviewSlice";
 import { Review } from "../../../components/Reviews";
 import { ReviewForm } from "../../../components/Reviews/ui/ReviewForm/ReviewForm";
+import classNames from "classnames";
 
 interface UserRating{
   id: string;
@@ -74,9 +74,31 @@ export default function MoviePage() {
 
   }, [reviews, id])
 
+  const splitArrays = useCallback((key: string) => {
+    if(key === 'Writer' && movieInfo[key].split(',').length > 3){
+      return (
+        movieInfo[key].split(',')[0] + ',' +  movieInfo[key].split(',')[1]
+      )
+    }
+
+    if(key === 'Actors' && movieInfo[key].split(',').length > 3){
+      return(
+        movieInfo[key].split(',')[0] + ',' +  movieInfo[key].split(',')[1]
+      )
+    }
+
+    //@ts-ignore
+    return movieInfo[key]
+  }, [movieInfo])
+
 
   if (status == "loading") {
-    return <h2>Loading...</h2>;
+    return (
+      <div className={styles.movieInner}>
+        <h2>Loading...</h2>
+      </div>
+    
+    );
   }
 
   if (error !== undefined) {
@@ -97,6 +119,14 @@ export default function MoviePage() {
           isBold
           className={styles.movieTitle}
         />
+        <div className={styles.headerRating}>
+          <span className={classNames(styles.rate, {
+            [styles.bad]: Number(movieInfo.imdbRating) < 5,
+            [styles.mid]: Number(movieInfo.imdbRating) > 5 && Number(movieInfo.imdbRating) < 7,
+            [styles.good]: Number(movieInfo.imdbRating) > 7
+          })}>{movieInfo.imdbRating} IMDB</span>
+          <span className={styles.headerVotes}>{movieInfo.imdbVotes} votes</span>
+        </div>
       </div>
       <div className={styles.movieWrapper}>
         {movieInfo !== null ? (
@@ -114,28 +144,27 @@ export default function MoviePage() {
         )}
 
         <div className={styles.movieInfo}>
-          <Table bordered>
-            <thead></thead>
-            <tbody>
-              {movieKeys.map((key, index) => (
-                <tr key={index}>
-                  <td>{key}</td>
+          
+          <ul className={styles.movieInfoList}>
+          {movieKeys.map((key, index) => (
+                <li key={index} className={styles.movieInfoItem}>
+                  <span>{key}: </span>
                   {/* @ts-ignore */}
-                  <td>{movieInfo[key]}</td>
-                </tr>
+                  <span>{splitArrays(key)}</span>
+                </li>
               ))}
-            </tbody>
-          </Table>
+          </ul>
         </div>
       </div>
+      <Text role="title" content="Description" isBold className={styles.movieDescriptionTitle}/>
       <Text
         role="text"
         content={movieInfo.Plot}
         className={styles.movieDescription}
       />
+      <Text role="title" content="Ratings" className={styles.ratingTitle} isBold/>
       <div className={styles.ratingsBox}>
       <div className={styles.movieRatings}>
-      <Text role="title" content="Ratings" className={styles.ratingTitle}/>
       <div className={styles.ratingsWrapper}>
       {movieInfo.Ratings?.length && movieInfo.Ratings?.length > 0 ?
         movieInfo.Ratings?.map(item => (
