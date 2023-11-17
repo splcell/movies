@@ -3,18 +3,15 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { MovieInfo } from "../types/movieInfo";
 
 export interface MovieInfoSliceSchema{
-  movieInfo: MovieInfo | {};
+  movieInfo: MovieInfo | object;
   status: 'idle' | 'loading' | 'sucess' | 'failed';
   error: string | undefined
 }
 
-interface Options{
-  id: string
-}
 
-export const getMovieInfo = createAsyncThunk<MovieInfoSliceSchema, Options>(
+export const getMovieInfo = createAsyncThunk<MovieInfoSliceSchema, string>(
   'movieSlice/getMovieInfo',
-  async ({id}, thunkApi) => {
+  async (id, thunkApi) => {
     try {
       const response = await fetch(`https://www.omdbapi.com/?apikey=20d32d33&i=${id}&plot=full`)
 
@@ -50,7 +47,6 @@ const movieSlice = createSlice({
 
     .addCase(getMovieInfo.fulfilled, (state, action) => {
       state.status = "sucess",
-      //@ts-ignore
       state.movieInfo = action.payload
       state.error = undefined
     })
