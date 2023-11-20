@@ -3,10 +3,9 @@ import { Movie } from "../types/movieListSchema";
 
 export interface MoviesListSliceSchema {
   movies: Movie[];
-  loadingMovies: Movie[];
   isLoading: boolean;
   totalResults: string;
-  error: null;
+  error: string | undefined;
 }
 
 export type Options = {
@@ -46,10 +45,9 @@ export const getAllMovies = createAsyncThunk<MoviesListSliceSchema, Options>(
 
 const initialState: MoviesListSliceSchema = {
   movies: [],
-  loadingMovies: [],
   totalResults: "",
   isLoading: false,
-  error: null,
+  error: undefined,
 };
 
 const moviesListSlice = createSlice({
@@ -57,12 +55,6 @@ const moviesListSlice = createSlice({
   initialState,
   reducers: {
     changeMovies: (state, action) => {
-      // const newMovies = action.payload.filter((movie: Movie) => {
-      //   return !state.movies.find((m) => m.imdbID === movie.imdbID);
-      // });
-
-      // state.movies.push(...newMovies);
-      // // state.movies = action.payload
       state.movies = action.payload
     },
 
@@ -72,23 +64,27 @@ const moviesListSlice = createSlice({
 
     cleanMovies: (state) => {
       state.movies = []
+    },
+
+    testChangeIsLoading: (state, action) => {
+      state.isLoading = action.payload
     }
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(getAllMovies.pending, (state) => {
-        (state.isLoading = true), (state.error = null);
+        (state.isLoading = true), (state.error = undefined);
       })
 
       .addCase(getAllMovies.fulfilled, (state) => {
         state.isLoading = false;
-        state.error = null;
+        state.error = undefined;
       })
 
-      .addCase(getAllMovies.rejected, (state) => {
+      .addCase(getAllMovies.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = null;
+        state.error = action.error.message;
       });
   },
 })

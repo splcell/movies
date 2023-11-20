@@ -141,10 +141,8 @@ export const PaginationComponent = memo(() => {
     return null
   }
 
-  console.log(prev, next)
-
   return (
-    <div className={styles.paginationInner}>
+    <div className={styles.paginationInner} role="pagination">
       {totalPages > 10 && <button onClick={firstPage}>{"<<"}</button>}
       {totalPages >= 20 && <button onClick={prevPages}>{"<"}</button>}
       <div className={styles.paginationBox}>{showedPagination}</div>

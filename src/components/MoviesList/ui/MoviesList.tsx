@@ -30,7 +30,7 @@ export const MoviesList = memo(() => {
 
 
   if (isLoading) {
-    return <Preloader />;
+    return <Preloader data-testdid='preloader'/>;
   }
 
   if (error) {
@@ -42,7 +42,7 @@ export const MoviesList = memo(() => {
   }
 
   return (
-    <div className={styles.moviesList}>
+    <div className={styles.moviesList} data-testdid='movies-list'>
       {Array.isArray(movies) && movies.length > 0 ? (
         <ul className={styles.movieCardList}>
           {movies.map((movie) => (

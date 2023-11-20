@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { getMovieInfo } from "../../../components/MovieInfo/model/slice/movieInfoSlice";
 import { getStatus } from "../../../components/MovieInfo/model/selectors/getStatus";
 import { getMovieInfoError } from "../../../components/MovieInfo/model/selectors/getError";
@@ -33,6 +33,7 @@ export default function MoviePage() {
   const navigate = useNavigate();
   const [rating, setRating] = useState(0);
   const reviews = useSelector(selectAllReviews);
+  const [searchParams, setSearchParams] = useSearchParams()
 
   Object.keys(movieInfo!).map((key) => {
     if (
@@ -64,12 +65,9 @@ export default function MoviePage() {
   useEffect(() => {
     if (id) {
       dispatch(getMovieInfo(id));
-      navigate({
-        pathname: `/movie/${id}/`,
-        search: `?movie=${id}`
-      });
+      setSearchParams({id: id})
     }
-  }, [id, dispatch, navigate]);
+  }, [id, dispatch, setSearchParams]);
 
   const movieReviews = useMemo(() => {
     return reviews.filter((review) => review.movieId === id);

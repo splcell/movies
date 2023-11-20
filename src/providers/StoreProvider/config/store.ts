@@ -6,6 +6,8 @@ import { PaginationReducer } from "../../../components/Pagination/model/slice/pa
 import { MovieInfoReducer } from "../../../components/MovieInfo/model/slice/movieInfoSlice";
 import { ReviewsistReducer } from "../../../components/Reviews/model/slice/reviewSlice";
 
+
+
 const store = configureStore({
   reducer: {
     search: SearchReducer,
@@ -14,12 +16,14 @@ const store = configureStore({
     pagination: PaginationReducer,
     movieInfo: MovieInfoReducer,
     reviews: ReviewsistReducer
-  }
+  },
 })
 
 export const createReduxStore = () => {
+  
   return store
 }
+
 
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch

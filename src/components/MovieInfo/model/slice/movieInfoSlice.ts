@@ -9,9 +9,9 @@ export interface MovieInfoSliceSchema{
 }
 
 
-export const getMovieInfo = createAsyncThunk<MovieInfoSliceSchema, string>(
+export const getMovieInfo = createAsyncThunk(
   'movieSlice/getMovieInfo',
-  async (id, thunkApi) => {
+  async (id: string, thunkApi) => {
     try {
       const response = await fetch(`https://www.omdbapi.com/?apikey=20d32d33&i=${id}&plot=full`)
 
