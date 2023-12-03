@@ -12,7 +12,7 @@ const store = createReduxStore();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <BrowserRouter basename="/movies">
+    <BrowserRouter basename="/">
       <Provider store={store}>
         <Suspense fallback={<Preloader />}>
           <App />
