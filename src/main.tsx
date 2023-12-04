@@ -11,13 +11,11 @@ import { Preloader } from "./components/Preloader/index.ts";
 const store = createReduxStore();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <Suspense fallback={<Preloader />}>
     <BrowserRouter basename="/">
       <Provider store={store}>
-        <Suspense fallback={<Preloader />}>
           <App />
-        </Suspense>
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>
+   </Suspense>
 );
